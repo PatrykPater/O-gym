@@ -1,15 +1,10 @@
 using games_store.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace games_store
 {
@@ -28,10 +23,7 @@ namespace games_store
         {
             services.AddControllers();
 
-            services.AddSwaggerGen(x => 
-            {
-                x.SwaggerDoc("v1", new OpenApiInfo { Title = "games-store API", Version = "v1" });
-            });
+            services.AddSwaggerGen(x => x.SwaggerDoc("v1", new OpenApiInfo { Title = "games-store API", Version = "v1" }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,20 +37,12 @@ namespace games_store
             var swaggerConfig = new SwaggerConfiguration();
             Configuration.GetSection(nameof(SwaggerConfiguration)).Bind(swaggerConfig);
 
-            app.UseSwagger(option => 
-            {
-                option.RouteTemplate = option.RouteTemplate = swaggerConfig.JsonRoute;
-            });
-
+            app.UseSwagger(option => option.RouteTemplate = option.RouteTemplate = swaggerConfig.JsonRoute);
             app.UseSwaggerUI(option => option.SwaggerEndpoint(swaggerConfig.UIEndPoint, swaggerConfig.Description));
 
             app.UseStaticFiles();
             app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }
