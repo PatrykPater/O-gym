@@ -9,19 +9,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5CAC1609-373
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "O-gym", "O-gym\O-gym.csproj", "{7F66C3FD-4275-43C0-AD90-ABEB11C01DDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "O-gym.Domain", "O-gym.Domain\O-gym.Domain.csproj", "{4D1C23AA-76B0-4304-B928-AAE5A866A0E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "O-gym.Domain", "O-gym.Domain\O-gym.Domain.csproj", "{4D1C23AA-76B0-4304-B928-AAE5A866A0E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "O-gym.Shared", "O-gym.Shared\O-gym.Shared.csproj", "{EFEA04AA-3BE5-449A-9DDE-C83BF4638E8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "O-gym.Shared", "O-gym.Shared\O-gym.Shared.csproj", "{EFEA04AA-3BE5-449A-9DDE-C83BF4638E8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "O-gym.Shared.Abstractions", "O-gym.Shared.Abstractions\O-gym.Shared.Abstractions.csproj", "{AD988274-C1A4-4B63-8D1A-68399756F6D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "O-gym.Shared.Abstractions", "O-gym.Shared.Abstractions\O-gym.Shared.Abstractions.csproj", "{AD988274-C1A4-4B63-8D1A-68399756F6D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "O-gym.Application", "O-gym.Application\O-gym.Application.csproj", "{122E5B87-2AAB-412D-9B69-E815BA40BC06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "O-gym.Application", "O-gym.Application\O-gym.Application.csproj", "{122E5B87-2AAB-412D-9B69-E815BA40BC06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "O-gym.Infrastructure", "O-gym.Infrastructure\O-gym.Infrastructure.csproj", "{DE1C0F4C-A085-4EF8-BEC8-0495C50C7F0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "O-gym.Infrastructure", "O-gym.Infrastructure\O-gym.Infrastructure.csproj", "{DE1C0F4C-A085-4EF8-BEC8-0495C50C7F0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "O-gym.Application.Tests", "O-gym.Application.Tests\O-gym.Application.Tests.csproj", "{AC267B5C-7756-49B1-8A6A-0CEF4C8D4C8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "O-gym.Application.Tests", "O-gym.Application.Tests\O-gym.Application.Tests.csproj", "{AC267B5C-7756-49B1-8A6A-0CEF4C8D4C8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "O-gym.Domain.Tests", "O-gym.Domain.Tests\O-gym.Domain.Tests.csproj", "{84DD44FF-3471-467A-99D1-A15B80198F89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "O-gym.Domain.Tests", "O-gym.Domain.Tests\O-gym.Domain.Tests.csproj", "{84DD44FF-3471-467A-99D1-A15B80198F89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "O-gym.Tests.Common", "O-gym.Tests.Common\O-gym.Tests.Common.csproj", "{69A999C6-596E-41A3-A91E-12518DE53E59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{84DD44FF-3471-467A-99D1-A15B80198F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84DD44FF-3471-467A-99D1-A15B80198F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84DD44FF-3471-467A-99D1-A15B80198F89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69A999C6-596E-41A3-A91E-12518DE53E59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69A999C6-596E-41A3-A91E-12518DE53E59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69A999C6-596E-41A3-A91E-12518DE53E59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69A999C6-596E-41A3-A91E-12518DE53E59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{DE1C0F4C-A085-4EF8-BEC8-0495C50C7F0A} = {5CAC1609-373A-4CB5-8789-5F765924E824}
 		{AC267B5C-7756-49B1-8A6A-0CEF4C8D4C8B} = {E2FD5B77-C097-42F7-B73D-2DED417C9B4C}
 		{84DD44FF-3471-467A-99D1-A15B80198F89} = {E2FD5B77-C097-42F7-B73D-2DED417C9B4C}
+		{69A999C6-596E-41A3-A91E-12518DE53E59} = {E2FD5B77-C097-42F7-B73D-2DED417C9B4C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8AEB0224-1071-4F73-907A-91BFC6473295}

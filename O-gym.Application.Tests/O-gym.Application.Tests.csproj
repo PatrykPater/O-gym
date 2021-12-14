@@ -5,4 +5,17 @@
     <RootNamespace>O_gym.Application.Tests</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="FeaturesTests\UserMembershipTests\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\O-gym.Application\O-gym.Application.csproj" />
+    <ProjectReference Include="..\O-gym.Tests.Common\O-gym.Tests.Common.csproj" />
+  </ItemGroup>
+
 </Project>
