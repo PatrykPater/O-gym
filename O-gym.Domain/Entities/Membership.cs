@@ -9,11 +9,18 @@ namespace O_gym.Domain.Entities
         public MembershipDuration MembershipDuration { get; private set; }
         public MonthlyMembershipPrice MonthlyPrice { get; }
 
-        public Membership(ushort months, decimal monthlyprice)
+        protected Membership()
+        {
+        }
+
+        private Membership(ushort months, decimal monthlyprice)
         {
             MembershipDuration = new (months);
             MonthlyPrice = new (monthlyprice);
         }
+
+        public static Membership Create(ushort months, decimal monthlyprice)
+            => new(months, monthlyprice);
 
         public void ExtendMembership(ushort months)
         {
@@ -27,7 +34,7 @@ namespace O_gym.Domain.Entities
 
         private static int MonthDifference(DateTime lValue, DateTime rValue)
         {
-            return (lValue.Month - rValue.Month) + (12 * (lValue.Year - rValue.Year));
+            return Math.Abs((lValue.Month - rValue.Month) + (12 * (lValue.Year - rValue.Year)));
         }
     }
 }

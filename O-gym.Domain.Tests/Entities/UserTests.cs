@@ -8,11 +8,16 @@ namespace O_gym.Domain.Tests.Entities
 {
     public class UserTests
     {
+        private readonly User user;
+
+        public UserTests()
+        {
+            user = new User("name", "last name", "email");
+        }
+
         [Fact]
         public void AddMembership_Should_AddNewMembership()
         {
-            var user = new User("name", "last name", "email");
-
             user.AddMembership(1, 100);
 
             Assert.NotNull(user.Events);
@@ -25,10 +30,45 @@ namespace O_gym.Domain.Tests.Entities
         [Fact]
         public void AddMembership_Should_Throw_UserAlreadyHasMembershipException()
         {
-            var user = new User("name", "last name", "email");
             user.AddMembership(1, 100);
 
             Assert.Throws<UserAlreadyHasMembershipException>(() => user.AddMembership(1, 100));
+        }
+
+        [Fact]
+        public void ExtendMembership_Should_ExtendCurrentMembership_BySpecifiedNumberOfMonths()
+        {
+            user.AddMembership(1, 100);
+
+            user.ExtendMembership(1);
+
+            var userMembershipExtendEvent = user.Events.Skip(1).FirstOrDefault();
+            Assert.NotNull(userMembershipExtendEvent);
+            Assert.IsAssignableFrom<UserMembershipExtended>(userMembershipExtendEvent);
+        }
+
+        [Fact]
+        public void ExtendMembership_Should_Throw_UserDoesNotHaveMembershipException()
+        {
+            Assert.Throws<UserDoesNotHaveMembershipException>(() => user.ExtendMembership(1));
+        }
+
+        [Fact]
+        public void CancelMembership_Should_CancelCurrentMembership()
+        {
+            user.AddMembership(1, 100);
+
+            user.CancelMembership();
+
+            var userMembershipCancelledEvent = user.Events.Skip(1).FirstOrDefault();
+            Assert.NotNull(userMembershipCancelledEvent);
+            Assert.IsAssignableFrom<UserMembershipCancelled>(userMembershipCancelledEvent);
+        }
+
+        [Fact]
+        public void CancelMembership_Should_Throw_UserDoesNotHaveMembershipException()
+        {
+            Assert.Throws<UserDoesNotHaveMembershipException>(() => user.CancelMembership());
         }
     }
 }

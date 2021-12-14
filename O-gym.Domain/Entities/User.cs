@@ -2,6 +2,7 @@
 using O_gym.Domain.Events;
 using O_gym.Domain.Exceptions;
 using O_gym.Shared.Abstractions.Domain;
+using System;
 
 namespace O_gym.Domain.Entities
 {
@@ -11,6 +12,9 @@ namespace O_gym.Domain.Entities
         private string _lastName;
         private string _Email;
         private Membership _membership;
+
+        public DateTime? MembershipExpirationDate =>
+            _membership?.MembershipDuration.ExpirationDate;
 
         public User(string name, string lastName, string email)
         {
@@ -26,7 +30,7 @@ namespace O_gym.Domain.Entities
                 throw new UserAlreadyHasMembershipException();
             }
 
-            _membership = new(months, monthlyprice);
+            _membership = Membership.Create(months, monthlyprice);
 
             AddEvent(new UserMembershipAdded(this, _membership));
         }
@@ -40,6 +44,7 @@ namespace O_gym.Domain.Entities
 
             _membership.ExtendMembership(months);
 
+            AddEvent(new UserMembershipExtended(this, _membership));
         }
 
         public void CancelMembership()
@@ -49,9 +54,9 @@ namespace O_gym.Domain.Entities
                 throw new UserDoesNotHaveMembershipException();
             }
 
-            _membership = null;
+            var id = _membership.Id;
 
-            // add domain event and tests
+            AddEvent(new UserMembershipCancelled(this, id));
         }
     }
 }
