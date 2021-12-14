@@ -1,4 +1,4 @@
-﻿namespace games_store.Configuration
+﻿namespace O_gym.Configuration
 {
     public class SwaggerConfiguration
     {

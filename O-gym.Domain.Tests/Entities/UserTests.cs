@@ -1,4 +1,4 @@
-﻿using games_store.Domain.Entities;
+﻿using O_gym.Domain.Entities;
 using O_gym.Domain.Events;
 using O_gym.Domain.Exceptions;
 using System.Linq;

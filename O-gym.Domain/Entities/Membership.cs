@@ -1,7 +1,7 @@
 ﻿using O_gym.Domain.ValueObjects;
 using System;
 
-namespace games_store.Domain.Entities
+namespace O_gym.Domain.Entities
 {
     public class Membership
     {

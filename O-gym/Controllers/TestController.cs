@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace games_store.Controllers
+namespace O_gym.Controllers
 {
     public class TestController: Controller
     {

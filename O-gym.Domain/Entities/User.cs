@@ -3,7 +3,7 @@ using O_gym.Domain.Events;
 using O_gym.Domain.Exceptions;
 using O_gym.Shared.Abstractions.Domain;
 
-namespace games_store.Domain.Entities
+namespace O_gym.Domain.Entities
 {
     public class User: AggregateRoot<User>
     {
@@ -40,7 +40,6 @@ namespace games_store.Domain.Entities
 
             _membership.ExtendMembership(months);
 
-            // add domain event and tests
         }
 
         public void CancelMembership()

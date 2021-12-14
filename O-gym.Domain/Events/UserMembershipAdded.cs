@@ -1,4 +1,4 @@
-﻿using games_store.Domain.Entities;
+﻿using O_gym.Domain.Entities;
 using O_gym.Shared.Abstractions.Domain;
 
 namespace O_gym.Domain.Events

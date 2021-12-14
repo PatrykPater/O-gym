@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "games_store": {
+    "O_gym": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
