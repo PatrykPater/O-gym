@@ -1,5 +1,6 @@
 ﻿using O_gym.Domain.Entities;
 using O_gym.Domain.Exceptions;
+using System.Collections.Generic;
 using Xunit;
 
 namespace O_gym.Domain.Tests.Entities
@@ -14,11 +15,7 @@ namespace O_gym.Domain.Tests.Entities
         }
 
         [Theory]
-        [InlineData(1)]
-        [InlineData(2)]
-        [InlineData(5)]
-        [InlineData(8)]
-        [InlineData(11)]
+        [MemberData(nameof(TestData))]
         public void ExtendMembership_Should_ExtendMembership_BySpecifiedNumberOfMonths(ushort months)
         {
             var originalExpiration = membership.MembershipDuration.ExpirationDate;
@@ -59,6 +56,18 @@ namespace O_gym.Domain.Tests.Entities
             Assert.NotNull(membership.MonthlyPrice);
             Assert.True(membership.MonthlyPrice > 0);
             Assert.True(membership.MembershipDuration.ExpirationDate > membership.MembershipDuration.StartDate);
+        }
+
+        public static IEnumerable<object[]> TestData()
+        {
+            yield return new object[] { 1 };
+            yield return new object[] { 2 };
+            yield return new object[] { 3 };
+            yield return new object[] { 4 };
+            yield return new object[] { 5 };
+            yield return new object[] { 6 };
+            yield return new object[] { 9 };
+            yield return new object[] { 11 };
         }
     }
 }

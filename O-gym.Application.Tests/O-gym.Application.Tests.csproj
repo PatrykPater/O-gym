@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\O-gym.Application\O-gym.Application.csproj" />
+    <ProjectReference Include="..\O-gym.Domain\O-gym.Domain.csproj" />
     <ProjectReference Include="..\O-gym.Tests.Common\O-gym.Tests.Common.csproj" />
   </ItemGroup>
 

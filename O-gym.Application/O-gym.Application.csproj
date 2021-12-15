@@ -13,4 +13,8 @@
     <Folder Include="Features\UserMembership\Queries\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\O-gym.Domain\O-gym.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

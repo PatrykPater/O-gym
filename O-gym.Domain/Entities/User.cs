@@ -6,7 +6,7 @@ using System;
 
 namespace O_gym.Domain.Entities
 {
-    public class User: AggregateRoot<User>
+    public class User: AggregateRoot<Guid>
     {
         private string _name;
         private string _lastName;
