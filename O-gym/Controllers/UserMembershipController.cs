@@ -20,5 +20,31 @@ namespace O_gym.Controllers
 
             return Ok(result);
         }
+
+        [HttpPost(ApiRoutes.UserMemberShip.ExtendMembership)]
+        public async Task<IActionResult> ExtendMembership(ExtendMembershipCommand command, CancellationToken cancellationToken)
+        {
+            var result = await Mediator.Send(command, cancellationToken);
+
+            if (result is null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
+        }
+
+        [HttpPost(ApiRoutes.UserMemberShip.CancelMembership)]
+        public async Task<IActionResult> CancelMembership(CancelMembershipCommand command, CancellationToken cancellationToken)
+        {
+            var result = await Mediator.Send(command, cancellationToken);
+
+            if (result is null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
+        }
     }
 }

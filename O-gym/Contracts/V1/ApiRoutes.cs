@@ -10,6 +10,8 @@
         {
             public const string UserMemberShipBase = Base + "/userMembership";
             public const string AddMembership = UserMemberShipBase + "/addMembership";
+            public const string ExtendMembership = UserMemberShipBase + "/extendMembership";
+            public const string CancelMembership = UserMemberShipBase + "/cancelMembership";
         }
     }
 }
