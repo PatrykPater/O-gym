@@ -12,4 +12,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\O-gym.Application\O-gym.Application.csproj" />
+  </ItemGroup>
+
 </Project>
