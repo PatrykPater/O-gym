@@ -7,20 +7,20 @@ namespace O_gym.Domain.Entities
     {
         public int Id { get; }
         public MembershipDuration MembershipDuration { get; private set; }
-        public MonthlyMembershipPrice MonthlyPrice { get; }
+        public MembershipDetails MembershipDetails { get; private set; }
 
         protected Membership()
         {
         }
 
-        private Membership(ushort months, decimal monthlyprice)
+        private Membership(ushort months, int membershipId)
         {
             MembershipDuration = new (months);
-            MonthlyPrice = new (monthlyprice);
+            MembershipDetails = new(membershipId);
         }
 
-        public static Membership Create(ushort months, decimal monthlyprice)
-            => new(months, monthlyprice);
+        public static Membership Create(ushort months, int membershipId)
+            => new(months, membershipId);
 
         public void ExtendMembership(ushort months)
         {

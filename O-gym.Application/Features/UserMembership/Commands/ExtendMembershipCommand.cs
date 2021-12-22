@@ -10,7 +10,6 @@ namespace O_gym.Application.Features.UserMembership.Commands
     {
         public Guid Id { get; set; }
         public ushort Months { get; set; }
-        public decimal Price { get; set; }
     }
 
     public class ExtendMembershipHandler : IRequestHandler<ExtendMembershipCommand, Guid?>

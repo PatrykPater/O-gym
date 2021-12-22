@@ -23,14 +23,14 @@ namespace O_gym.Domain.Entities
             _Email = Guard.Against.NullOrWhiteSpace(email, nameof(email)); ;
         }
 
-        public void AddMembership(ushort months, decimal monthlyprice)
+        public void AddMembership(ushort months, int membershipId)
         {
             if (_membership is not null)
             {
                 throw new UserAlreadyHasMembershipException();
             }
 
-            _membership = Membership.Create(months, monthlyprice);
+            _membership = Membership.Create(months, membershipId);
 
             AddEvent(new UserMembershipAdded(this, _membership));
         }

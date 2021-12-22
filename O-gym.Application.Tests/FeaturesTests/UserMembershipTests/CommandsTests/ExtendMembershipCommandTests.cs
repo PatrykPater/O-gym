@@ -23,7 +23,7 @@ namespace O_gym.Application.Tests.FeaturesTests.UserMembershipTests.CommandsTest
             _commandHandler = new ExtendMembershipHandler(repository.Object);
 
             userId = Guid.NewGuid();
-            command = new ExtendMembershipCommand() { Id = userId, Months = 1, Price = 100 };
+            command = new ExtendMembershipCommand() { Id = userId, Months = 1 };
 
             user = new User("FirstName", "LastName", "email@test.com");
             user.AddMembership(1, 100);

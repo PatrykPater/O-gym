@@ -5,7 +5,6 @@ namespace O_gym.Domain.ValueObjects
 {
     public record MembershipDuration
     {
-        public DateTime StartDate { get; }
         public DateTime ExpirationDate { get; }
 
         public MembershipDuration(ushort months)
@@ -15,7 +14,6 @@ namespace O_gym.Domain.ValueObjects
                 throw new InvalidMembershipDurationValueException();
             }
 
-            StartDate = DateTime.UtcNow;
             ExpirationDate = DateTime.UtcNow.AddMonths(months);
         }
     }

@@ -8,7 +8,7 @@ namespace O_gym.Application.Features.UserMembership.Commands
 {
     public class CancelMembershipCommand : IRequest<Guid?>
     {
-        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
     }
 
     public class CancelMembershipCommandHandler : IRequestHandler<CancelMembershipCommand, Guid?>
@@ -22,7 +22,7 @@ namespace O_gym.Application.Features.UserMembership.Commands
 
         public async Task<Guid?> Handle(CancelMembershipCommand request, CancellationToken cancellationToken)
         {
-            var user = await userRepository.GetById(request.Id, cancellationToken);
+            var user = await userRepository.GetById(request.UserId, cancellationToken);
 
             if (user is null)
             {

@@ -23,7 +23,7 @@ namespace O_gym.Application.Tests.FeaturesTests.UserMembershipTests.CommandsTest
             _commandHandler = new CancelMembershipCommandHandler(repository.Object);
 
             userId = Guid.NewGuid();
-            command = new CancelMembershipCommand() { Id = userId };
+            command = new CancelMembershipCommand() { UserId = userId };
 
             user = new User("FirstName", "LastName", "email@test.com");
             user.AddMembership(1, 100);
