@@ -4,7 +4,7 @@ namespace O_gym.Domain.Entities
 {
     public class MembershipDetails
     {
-        private int _id;
+        public int Id { get; }
         private string _name;
         private MonthlyMembershipPrice _price;
         private ushort _tier;
@@ -15,7 +15,7 @@ namespace O_gym.Domain.Entities
 
         public MembershipDetails(int id)
         {
-            _id = id;
+            Id = id;
         }
     }
 }

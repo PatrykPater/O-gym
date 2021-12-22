@@ -3,11 +3,11 @@ using System;
 
 namespace O_gym.Domain.ValueObjects
 {
-    public record MembershipDuration
+    public record MembershipExpiration
     {
         public DateTime ExpirationDate { get; }
 
-        public MembershipDuration(ushort months)
+        public MembershipExpiration(ushort months)
         {
             if (months > 12 || months <= 0)
             {

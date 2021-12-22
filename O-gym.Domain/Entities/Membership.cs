@@ -6,7 +6,7 @@ namespace O_gym.Domain.Entities
     public class Membership
     {
         public int Id { get; }
-        public MembershipDuration MembershipDuration { get; private set; }
+        public MembershipExpiration MembershipExpiration { get; private set; }
         public MembershipDetails MembershipDetails { get; private set; }
 
         protected Membership()
@@ -15,21 +15,24 @@ namespace O_gym.Domain.Entities
 
         private Membership(ushort months, int membershipId)
         {
-            MembershipDuration = new (months);
+            MembershipExpiration = new (months);
             MembershipDetails = new(membershipId);
         }
 
         public static Membership Create(ushort months, int membershipId)
             => new(months, membershipId);
 
+        public ushort RemainingMonths =>
+            Convert.ToUInt16(MonthDifference(MembershipExpiration.ExpirationDate, DateTime.UtcNow));
+
         public void ExtendMembership(ushort months)
         {
-            var expiration = MembershipDuration.ExpirationDate;
+            var expiration = MembershipExpiration.ExpirationDate;
 
             var ramainingMonths = MonthDifference(DateTime.UtcNow, expiration);
             months += Convert.ToUInt16(ramainingMonths);
 
-            MembershipDuration = new(months);
+            MembershipExpiration = new(months);
         }
 
         private static int MonthDifference(DateTime lValue, DateTime rValue)

@@ -19,10 +19,10 @@ namespace O_gym.Domain.Tests.Entities
         [MemberData(nameof(TestData))]
         public void ExtendMembership_Should_ExtendMembership_BySpecifiedNumberOfMonths(ushort months)
         {
-            var originalExpiration = membership.MembershipDuration.ExpirationDate;
+            var originalExpiration = membership.MembershipExpiration.ExpirationDate;
 
             membership.ExtendMembership(months);
-            var newExpirationDate = membership.MembershipDuration.ExpirationDate;
+            var newExpirationDate = membership.MembershipExpiration.ExpirationDate;
 
             Assert.True(originalExpiration.AddMonths(months).Month == newExpirationDate.Month);
         }
@@ -45,8 +45,22 @@ namespace O_gym.Domain.Tests.Entities
             var membership = Membership.Create(1, 100);
 
             Assert.NotNull(membership);
-            Assert.NotNull(membership.MembershipDuration);
-            Assert.True(membership.MembershipDuration.ExpirationDate > DateTime.UtcNow);
+            Assert.NotNull(membership.MembershipExpiration);
+            Assert.True(membership.MembershipExpiration.ExpirationDate > DateTime.UtcNow);
+        }
+
+        [Theory]
+        [InlineData(2)]
+        [InlineData(4)]
+        [InlineData(6)]
+        [InlineData(9)]
+        public void RemainingMonths_Should_ReturnNumberOfMonthsUntilExpirationDate(ushort months)
+        {
+            var membership = Membership.Create(months, 100);
+
+            var remainingMonths = membership.RemainingMonths;
+
+            Assert.Equal(months, remainingMonths);
         }
 
         public static IEnumerable<object[]> TestData()

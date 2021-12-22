@@ -1,4 +1,5 @@
-﻿using O_gym.Domain.Entities;
+﻿using Moq;
+using O_gym.Domain.Entities;
 using O_gym.Domain.Events;
 using O_gym.Domain.Exceptions;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace O_gym.Domain.Tests.Entities
     public class UserTests
     {
         private readonly User user;
+        private readonly int membershipDetailsId = 100;
 
         public UserTests()
         {
@@ -18,7 +20,7 @@ namespace O_gym.Domain.Tests.Entities
         [Fact]
         public void AddMembership_Should_AddNewMembership()
         {
-            user.AddMembership(1, 100);
+            user.AddMembership(1, membershipDetailsId);
 
             Assert.NotNull(user.Events);
 
@@ -30,15 +32,15 @@ namespace O_gym.Domain.Tests.Entities
         [Fact]
         public void AddMembership_Should_Throw_UserAlreadyHasMembershipException()
         {
-            user.AddMembership(1, 100);
+            user.AddMembership(1, membershipDetailsId);
 
-            Assert.Throws<UserAlreadyHasMembershipException>(() => user.AddMembership(1, 100));
+            Assert.Throws<UserAlreadyHasMembershipException>(() => user.AddMembership(1, membershipDetailsId));
         }
 
         [Fact]
         public void ExtendMembership_Should_ExtendCurrentMembership_BySpecifiedNumberOfMonths()
         {
-            user.AddMembership(1, 100);
+            user.AddMembership(1, membershipDetailsId);
 
             user.ExtendMembership(1);
 
@@ -56,7 +58,7 @@ namespace O_gym.Domain.Tests.Entities
         [Fact]
         public void CancelMembership_Should_CancelCurrentMembership()
         {
-            user.AddMembership(1, 100);
+            user.AddMembership(1, membershipDetailsId);
 
             user.CancelMembership();
 
@@ -69,6 +71,28 @@ namespace O_gym.Domain.Tests.Entities
         public void CancelMembership_Should_Throw_UserDoesNotHaveMembershipException()
         {
             Assert.Throws<UserDoesNotHaveMembershipException>(() => user.CancelMembership());
+        }
+
+        [Fact]
+        public void ChangeMembership_Should_ChangeCurrentMembership()
+        {
+            user.AddMembership(1, membershipDetailsId);
+
+            user.ChangeMembership(It.IsAny<int>());
+
+            Assert.NotNull(user.Events);
+
+            var userMembershipChangedEvent = user.Events.Skip(1).FirstOrDefault();
+            Assert.NotNull(userMembershipChangedEvent);
+            Assert.IsAssignableFrom<UserMembershipChanged>(userMembershipChangedEvent);
+        }
+
+        [Fact]
+        public void ChangeMembership_Should_Throw_UserMembershipCannotBeChangedToTheSameMembership()
+        {
+            user.AddMembership(1, membershipDetailsId);
+
+            Assert.Throws<UserMembershipCannotBeChangedToTheSameMembership>(() => user.ChangeMembership(membershipDetailsId));
         }
     }
 }

@@ -14,7 +14,7 @@ namespace O_gym.Domain.Entities
         private Membership _membership;
 
         public DateTime? MembershipExpirationDate =>
-            _membership?.MembershipDuration.ExpirationDate;
+            _membership?.MembershipExpiration.ExpirationDate;
 
         public User(string name, string lastName, string email)
         {
@@ -57,6 +57,26 @@ namespace O_gym.Domain.Entities
             var id = _membership.Id;
 
             AddEvent(new UserMembershipCancelled(this, id));
+        }
+
+        public void ChangeMembership(int membershipDetailsId)
+        {
+            if (_membership is null)
+            {
+                throw new UserDoesNotHaveMembershipException();
+            }
+
+            if (membershipDetailsId == _membership.MembershipDetails.Id)
+            {
+                throw new UserMembershipCannotBeChangedToTheSameMembership();
+            }
+
+            var months = _membership.RemainingMonths;
+            var oldMembership = _membership;
+
+            _membership = Membership.Create(months, membershipDetailsId);
+
+            AddEvent(new UserMembershipChanged(this, _membership, oldMembership));
         }
     }
 }
