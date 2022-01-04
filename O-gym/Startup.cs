@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using O_gym.Infrastructure;
 
 namespace O_gym
 {
@@ -21,6 +22,7 @@ namespace O_gym
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddInfrastructure(Configuration);
             services.AddControllers();
 
             services.AddSwaggerGen(x => x.SwaggerDoc("v1", new OpenApiInfo { Title = "games-store API", Version = "v1" }));
