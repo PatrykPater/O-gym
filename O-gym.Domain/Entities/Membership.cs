@@ -1,13 +1,15 @@
-﻿using O_gym.Domain.ValueObjects;
-using System;
+﻿using System;
 
 namespace O_gym.Domain.Entities
 {
     public class Membership
     {
+        private Guid _userId;
+        private int _membershipDetailsId;
+
         public int Id { get; }
-        public MembershipExpiration MembershipExpiration { get; private set; }
         public MembershipDetails MembershipDetails { get; private set; }
+        public DateTime ExpirationDate { get; private set; }
 
         protected Membership()
         {
@@ -15,24 +17,19 @@ namespace O_gym.Domain.Entities
 
         private Membership(ushort months, int membershipId)
         {
-            MembershipExpiration = new (months);
             MembershipDetails = new(membershipId);
+            ExpirationDate = DateTime.UtcNow.AddMonths(months);
         }
 
         public static Membership Create(ushort months, int membershipId)
             => new(months, membershipId);
 
         public ushort RemainingMonths =>
-            Convert.ToUInt16(MonthDifference(MembershipExpiration.ExpirationDate, DateTime.UtcNow));
+            Convert.ToUInt16(MonthDifference(ExpirationDate, DateTime.UtcNow));
 
         public void ExtendMembership(ushort months)
         {
-            var expiration = MembershipExpiration.ExpirationDate;
-
-            var ramainingMonths = MonthDifference(DateTime.UtcNow, expiration);
-            months += Convert.ToUInt16(ramainingMonths);
-
-            MembershipExpiration = new(months);
+            ExpirationDate = ExpirationDate.AddMonths(months);
         }
 
         private static int MonthDifference(DateTime lValue, DateTime rValue)

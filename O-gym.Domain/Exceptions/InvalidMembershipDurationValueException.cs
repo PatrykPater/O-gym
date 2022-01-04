@@ -4,7 +4,7 @@ namespace O_gym.Domain.Exceptions
 {
     public class InvalidMembershipDurationValueException : OGymException
     {
-        public InvalidMembershipDurationValueException() : base("Invalid value for membership duration. Duration cannot exceed 12 months")
+        public InvalidMembershipDurationValueException() : base("Invalid value for membership duration")
         {
         }
     }

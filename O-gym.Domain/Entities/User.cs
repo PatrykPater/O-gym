@@ -14,7 +14,7 @@ namespace O_gym.Domain.Entities
         private Membership _membership;
 
         public DateTime? MembershipExpirationDate =>
-            _membership?.MembershipExpiration.ExpirationDate;
+            _membership?.ExpirationDate;
 
         public User(string name, string lastName, string email)
         {
