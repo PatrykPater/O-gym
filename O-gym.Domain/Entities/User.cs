@@ -27,7 +27,7 @@ namespace O_gym.Domain.Entities
         {
             if (_membership is not null)
             {
-                throw new UserAlreadyHasMembershipException();
+                //throw new UserAlreadyHasMembershipException();
             }
 
             _membership = Membership.Create(months, membershipId);
