@@ -23,7 +23,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "O-gym.Application.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "O-gym.Domain.Tests", "O-gym.Domain.Tests\O-gym.Domain.Tests.csproj", "{84DD44FF-3471-467A-99D1-A15B80198F89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "O-gym.Tests.Common", "O-gym.Tests.Common\O-gym.Tests.Common.csproj", "{69A999C6-596E-41A3-A91E-12518DE53E59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "O-gym.Tests.Common", "O-gym.Tests.Common\O-gym.Tests.Common.csproj", "{69A999C6-596E-41A3-A91E-12518DE53E59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1902738E-E6A3-42D9-A73A-CB6EBD823113}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
