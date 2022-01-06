@@ -16,10 +16,21 @@ COPY ["O-gym.Domain/O-gym.Domain.csproj", "O-gym.Domain/"]
 COPY ["O-gym.Infrastructure/O-gym.Infrastructure.csproj", "O-gym.Infrastructure/"]
 COPY ["O-gym.Shared/O-gym.Shared.csproj", "O-gym.Shared/"]
 COPY ["O-gym.Shared.Abstractions/O-gym.Shared.Abstractions.csproj", "O-gym.Shared.Abstractions/"]
+COPY ["Tests/O-gym.Tests.Common/O-gym.Tests.Common.csproj", "Tests/O-gym.Tests.Common/"]
+COPY ["Tests/O-gym.Domain.Tests/O-gym.Domain.Tests.csproj", "Tests/O-gym.Domain.Tests/"]
+COPY ["Tests/O-gym.Application.Tests/O-gym.Application.Tests.csproj", "Tests/O-gym.Application.Tests/"]
+
 RUN dotnet restore "O-gym/O-gym.csproj"
 COPY . .
+
 WORKDIR "/src/O-gym"
 RUN dotnet build "O-gym.csproj" -c Release -o /app/build
+
+FROM build AS test
+LABEL test=true
+RUN dotnet test -c Release --results-directory /testresults --logger "trx;LogFileName=test_common.trx" Tests/O-gym.Tests.Common/O-gym.Tests.Common.csproj
+RUN dotnet test -c Release --results-directory /testresults --logger "trx;LogFileName=test_domain.trx" Tests/O-gym.Domain.Tests/O-gym.Domain.Tests.csproj
+RUN dotnet test -c Release --results-directory /testresults --logger "trx;LogFileName=test_application.trx" Tests/O-gym.Application.Tests/O-gym.Application.Tests.csproj
 
 FROM build AS publish
 RUN dotnet publish "O-gym.csproj" -c Release -o /app/publish
