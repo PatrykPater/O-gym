@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Test
-        run: dotnet test --no-restore --verbosity norma
+        run: dotnet test --no-restore --verbosity normal
       
       # Log into Docker Hub.
       - name: Login to Docker Hub
